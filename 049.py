@@ -22,17 +22,7 @@ from algo import comb
 
 answer = []
 
-# Counter of the solutions registered in @answer.
-
-n = 0
-
-# Temporary array, where all the permutations of the digits
-# from the number are placed
-
-temp = []
-
-# Step 1: Build the list of all 4-digits prime numbers.
-
+# Build the list of all 4-digits prime numbers.
 primes_4d = [x for x in primes.primes(9991) if x > 1000]
 
 def prime_permutations(p_list):
