@@ -12,8 +12,7 @@
 # What 12-digit number do you form by concatenating
 # the three terms in this sequence?
 
-from numtheory import primes, dividers
-from algo import comb
+from numtheory import primes, comb
 
 # This array is for only two different groups of digits,
 # where all permutations of all digits from each group
@@ -29,13 +28,14 @@ def prime_permutations(p_list):
 	if not p_list:
 		return
 	p = p_list[0]
-	p_perms = [x for x in comb.permutations(p) if ((x%2!=0) and (x in p_list))]
+	p_perms = [x for x in comb.digits_permutations(p)
+			   if ((x%2!=0) and (x in p_list))]
 	if len(p_perms) > 2:
-		p_perms.sort()
-		for i in range(len(p_perms)-2):
-			if (p_perms[i+2] - p_perms[i+1]) == (p_perms[i+1] - p_perms[i]):
-				print(p_perms)
-				answer.append(p)
+		combs_by_3 = comb.combinations(p_perms, 3)
+		for i in range(len(combs_by_3)):
+			s = combs_by_3[i]
+			if (s[2] - s[1]) == (s[1] - s[0]):
+				answer.append(s)
 	prime_permutations([x for x in p_list if (x not in p_perms)])
 
 prime_permutations(primes_4d)
