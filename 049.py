@@ -13,6 +13,7 @@
 # the three terms in this sequence?
 
 from numtheory import primes, comb
+import time
 
 # This array is for only two different groups of digits,
 # where all permutations of all digits from each group
@@ -22,6 +23,7 @@ from numtheory import primes, comb
 answer = []
 
 # Build the list of all 4-digits prime numbers.
+start_time = time.time()
 primes_4d = [x for x in primes.primes(9991) if x > 1000]
 
 def prime_permutations(p_list):
@@ -40,3 +42,5 @@ def prime_permutations(p_list):
 
 prime_permutations(primes_4d)
 print(answer)
+print(f"Total time: {round(time.time()-start_time,6)} seconds")
+# Total time is 97.5 s
